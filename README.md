@@ -1,9 +1,3 @@
-Perfect 👍 You’ve got **two README drafts** – one very detailed and one more simplified. I’ll merge them into a **final polished `README.md`** that includes all useful points (features, setup, project structure, deployment, future enhancements, etc.) without repeating unnecessarily.
-
-Here’s the final version:
-
----
-
 # 📊 Student Performance Tracker (Flask + SQLite/MySQL)
 
 A web-based application to manage, analyze, and visualize students’ academic performance. Teachers can add/update marks, generate insightful reports, and track progress, while students can view their results in an easy-to-understand format.
