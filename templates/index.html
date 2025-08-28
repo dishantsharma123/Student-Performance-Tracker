@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm">
+  <div class="card-header">All Students</div>
+  <ul class="list-group list-group-flush">
+    {% if students %}
+      {% for student in students %}
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <div>
+          <strong>{{ student.name }}</strong> — Roll: {{ student.roll_number }}
+          {% if avg_map[student.id] is not none %}
+            <span class="badge bg-success ms-2">Avg: {{ avg_map[student.id] }}</span>
+          {% else %}
+            <span class="badge bg-secondary ms-2">No grades</span>
+          {% endif %}
+        </div>
+        <div class="d-flex gap-2">
+          <a class="btn btn-sm btn-success" href="{{ url_for('view_student', student_id=student.id) }}">View</a>
+          <form method="POST" action="{{ url_for('delete_student', student_id=student.id) }}" onsubmit="return confirm('Delete this student?');">
+            <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
+          </form>
+        </div>
+      </li>
+      {% endfor %}
+    {% else %}
+      <li class="list-group-item">No students yet. Click "Add Student" to begin.</li>
+    {% endif %}
+  </ul>
+</div>
+{% endblock %}

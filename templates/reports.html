@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row g-3">
+  <div class="col-md-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-header">📈 Class Average by Subject</div>
+      <ul class="list-group list-group-flush">
+        {% if subject_avg %}
+          {% for subj, avg in subject_avg.items() %}
+            <li class="list-group-item d-flex justify-content-between">
+              <span>{{ subj }}</span><strong>{{ avg }}</strong>
+            </li>
+          {% endfor %}
+        {% else %}
+          <li class="list-group-item">No data yet.</li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card shadow-sm h-100">
+      <div class="card-header">🏆 Topper by Subject</div>
+      <ul class="list-group list-group-flush">
+        {% if toppers %}
+          {% for subj, info in toppers.items() %}
+            <li class="list-group-item">
+              <div class="d-flex justify-content-between">
+                <strong>{{ subj }}</strong>
+                <span>{{ info.score }}</span>
+              </div>
+              <div class="text-muted">By {{ info.student_name }} (Roll: {{ info.roll_number }})</div>
+            </li>
+          {% endfor %}
+        {% else %}
+          <li class="list-group-item">No data yet.</li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

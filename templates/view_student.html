@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card shadow-sm mb-3">
+  <div class="card-header">Student Details</div>
+  <div class="card-body">
+    <h5>{{ student.name }}</h5>
+    <p class="text-muted">Roll: {{ student.roll_number }}</p>
+    <a class="btn btn-primary" href="{{ url_for('add_grade', student_id=student.id) }}">➕ Add Grade</a>
+  </div>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-header">Grades</div>
+  <ul class="list-group list-group-flush">
+    {% if grades %}
+      {% for g in grades %}
+        <li class="list-group-item d-flex align-items-center justify-content-between">
+          <div>{{ g.subject }}: <strong>{{ g.score }}</strong></div>
+          <form method="POST" action="{{ url_for('delete_grade', grade_id=g.id) }}" onsubmit="return confirm('Delete this grade?');">
+            <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
+          </form>
+        </li>
+      {% endfor %}
+    {% else %}
+      <li class="list-group-item">No grades yet.</li>
+    {% endif %}
+  </ul>
+  <div class="card-body">
+    {% if avg is not none %}
+      <p><strong>Average:</strong> {{ avg }}</p>
+    {% else %}
+      <p class="text-muted">Average will appear after adding grades.</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
